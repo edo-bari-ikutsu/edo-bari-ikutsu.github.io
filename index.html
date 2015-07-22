@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8">
-        <title>GitHub Pagesのサンプル</title>
+        <title>Service Workerのサンプル</title>
+        <script>
+            window.addEventListener("load", function(event){
+                if (navigator.serviceWorker) {
+                    // Service Workerを登録
+                    navigator.serviceWorker.register("./service-worker.js")
+                    .then(function(registration){
+                        // 登録成功
+                        document.getElementById("msg").textContent 
+                        = "Service Worker 登録成功";
+                    }).catch(function(error) {
+                        // 登録失敗
+                        document.getElementById("msg").textContent 
+                            = "Service Worker 登録失敗：" + error.toString();
+                    });
+                }
+            }, false);
+        </script>
     </head>
-    <script>
-        window.addEventListener("load", function(event){
-            // 結果を表示するエレメントを取得 ...（1）
-            var dispElem = document.getElementById("protocol");
-            // URLのプロトコルにより表示を出し分け ...（2）
-            if (location.protocol == "http:") {
-                dispElem.textContent = "盗聴の可能性があるHTTP";
-                dispElem.style.color = "red";
-            }
-            else if (location.protocol == "https:") {
-                dispElem.textContent = "安全なHTTPS";
-                dispElem.style.color = "blue";
-            }
-            else {
-                dispElem.textContent = "その他";
-            }
-        }, false);
-    </script>
+    
     <body>
-        <h1>GitHub Pagesのサンプル</h1>
-        <p>GitHub PagesはHTTPでも、HTTPSでもアクセスできます。</p>
-        <!-- 結果を表示するエレメント ...（3）-->
-        <p>現在の状態：<span id="protocol"></span></p>
+        <h1>Service Workerのサンプル</h1>
+        <div id="msg"></div>
+        <div style="float:left">
+            <h3>キャッシュ画像1</h3>
+            <img src="img/image1.jpg">
+        </div>
+        <div style="float:left">
+            <h3>キャッシュ画像2</h3>
+            <img src="img/image2.jpg">
+        </div>
+        <div style="float:left">
+            <h3>キャッシュ画像3</h3>
+            <img src="img/image3.jpg">
+        </div>
+        <div style="float:left">
+            <h3>キャッシュ画像4</h3>
+            <img src="img/image4.jpg">
+        </div>
     </body>
+
 </html>
