@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>GitHub Pagesのサンプル</title>
+    </head>
+    <script>
+        window.addEventListener("load", function(event){
+            // 結果を表示するエレメントを取得 ...（1）
+            var dispElem = document.getElementById("protocol");
+            // URLのプロトコルにより表示を出し分け ...（2）
+            if (location.protocol == "http:") {
+                dispElem.textContent = "盗聴の可能性があるHTTP";
+                dispElem.style.color = "red";
+            }
+            else if (location.protocol == "https:") {
+                dispElem.textContent = "安全なHTTPS";
+                dispElem.style.color = "blue";
+            }
+            else {
+                dispElem.textContent = "その他";
+            }
+        }, false);
+    </script>
+    <body>
+        <h1>GitHub Pagesのサンプル</h1>
+        <p>GitHub PagesはHTTPでも、HTTPSでもアクセスできます。</p>
+        <!-- 結果を表示するエレメント ...（3）-->
+        <p>現在の状態：<span id="protocol"></span></p>
+    </body>
+</html>
